@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ADYA · Adana Kalkınma ve Gençlik Derneği</title>
+<meta name="description" content="Adana Kalkınma ve Gençlik Derneği (ADYA): Adanalı gençleri Avrupa'yla buluşturan gençlik değişimleri, eğitimler ve Erasmus+ projeleri.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌉</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --river:#0E4D5C;
+    --river-deep:#08333D;
+    --blossom:#F29A2E;
+    --sage:#A9C4B5;
+    --ink:#1C2A30;
+    --paper:#F7F9F8;
+    --line:#D5E0DB;
+    --muted:#4E6168;
+    --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+    --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);font-size:1.0625rem;line-height:1.6}
+  img{max-width:100%}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--blossom);outline-offset:3px}
+  .wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+
+  /* Language toggle */
+  .lang-btn{background:none;border:1.5px solid var(--line);border-radius:999px;padding:.3rem .75rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--muted);cursor:pointer;margin-left:1rem;transition:all .2s}
+  .lang-btn:hover{border-color:var(--river);color:var(--river)}
+  body.en .tr-text{display:none}
+  body:not(.en) .en-text{display:none}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(247,249,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.02em;text-decoration:none;color:var(--river);display:flex;align-items:center;gap:.6rem}
+  .logo img{width:38px;height:38px;object-fit:contain}
+  .nav-right{display:flex;align-items:center}
+  nav ul{list-style:none;display:flex;gap:1.75rem}
+  nav a{text-decoration:none;font-weight:500;color:var(--muted)}
+  nav a:hover{color:var(--river)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:.45rem .8rem;font:inherit;font-weight:600;color:var(--river);cursor:pointer}
+
+  /* Hero */
+  .hero{background:var(--river);color:var(--paper);overflow:hidden;position:relative}
+  .hero .wrap{padding:5.5rem 0 0}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,7vw,5.6rem);line-height:.98;letter-spacing:-.035em;max-width:13ch}
+  .hero p{margin-top:1.5rem;font-size:1.2rem;max-width:46ch;color:#D6E6E2}
+  .hero .cta{margin-top:2.25rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.85rem 1.4rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid transparent}
+  .btn-primary{background:var(--blossom);color:var(--river-deep)}
+  .btn-primary:hover{background:#ffb04f}
+  .btn-ghost{border-color:rgba(247,249,248,.5);color:var(--paper)}
+  .btn-ghost:hover{border-color:var(--paper)}
+  .bridge{display:block;width:100%;height:auto;margin-top:4rem}
+  @media(prefers-reduced-motion:no-preference){
+    .bridge .arch{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.6s cubic-bezier(.6,.1,.2,1) forwards}
+    .bridge .arch:nth-child(2){animation-delay:.12s}.bridge .arch:nth-child(3){animation-delay:.24s}
+    .bridge .arch:nth-child(4){animation-delay:.36s}.bridge .arch:nth-child(5){animation-delay:.48s}
+    .bridge .arch:nth-child(6){animation-delay:.6s}
+    @keyframes draw{to{stroke-dashoffset:0}}
+  }
+
+  /* Sections */
+  section{padding:6rem 0}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.025em;line-height:1.05;color:var(--river)}
+  .lead{margin-top:1.25rem;font-size:1.2rem;max-width:60ch;color:var(--muted)}
+  .split{display:grid;grid-template-columns:1fr 1.25fr;gap:4rem;align-items:start}
+  .facts{display:grid;gap:1.5rem}
+  .fact{border-left:4px solid var(--blossom);padding-left:1.25rem}
+  .fact h3{font-family:var(--display);font-size:1.25rem;font-weight:700;color:var(--ink)}
+  .fact p{color:var(--muted);margin-top:.25rem}
+
+  /* Projects */
+  #projeler{background:#fff;border-block:1px solid var(--line)}
+  .feature{margin-top:3rem;display:grid;grid-template-columns:1.4fr 1fr;border:2px solid var(--river);border-radius:20px;overflow:hidden}
+  .feature-body{padding:2.5rem}
+  .tag{display:inline-block;background:var(--sage);color:var(--river-deep);font-size:.85rem;font-weight:600;padding:.25rem .7rem;border-radius:999px}
+  .feature h3{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;line-height:1.1;margin-top:1rem;letter-spacing:-.02em}
+  .feature-body p{margin-top:1rem;color:var(--muted);max-width:52ch}
+  .feature-side{background:var(--river);color:var(--paper);padding:2.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.4rem}
+  .feature-side dt{font-size:.9rem;color:var(--sage)}
+  .feature-side dd{font-family:var(--display);font-size:1.35rem;font-weight:700;line-height:1.2}
+  .subhead{font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--ink);margin-top:3.5rem}
+  .past{margin-top:1rem;list-style:none;border-top:1px solid var(--line)}
+  .past li{display:flex;justify-content:space-between;gap:1rem;padding:1.15rem 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .past strong{font-weight:600}
+  .past span{color:var(--muted)}
+  .photo{position:relative;background:repeating-linear-gradient(135deg,#E6EEEA 0 14px,#DCE7E2 14px 28px);overflow:hidden}
+  .photo::after{content:"Fotoğraf eklenecek";position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:.9rem;font-weight:500}
+  .photo img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover}
+  .cards{margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2rem}
+  .card .photo{aspect-ratio:4/3;border-radius:14px}
+  .card h3{font-family:var(--display);font-size:1.25rem;font-weight:700;margin-top:1rem;line-height:1.2}
+  .card .meta{color:var(--blossom);font-weight:600;font-size:.92rem;margin-top:.3rem;filter:brightness(.8)}
+  .card p{color:var(--muted);margin-top:.5rem}
+  .card .more{display:inline-block;margin-top:.6rem;font-weight:600;color:var(--river);text-decoration-color:var(--blossom);text-underline-offset:4px}
+
+  /* Gallery */
+  .gallery{margin-top:2.5rem;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:.75rem}
+  .gallery .photo{border-radius:10px}
+  .gallery .wide{grid-column:span 2}
+  .gallery .tall{grid-row:span 2}
+  @media(max-width:860px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}}
+
+  /* Opportunities */
+  .steps{margin-top:3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;counter-reset:s;list-style:none}
+  .steps li{counter-increment:s;padding-top:1.25rem;border-top:3px solid var(--river)}
+  .steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:2.4rem;color:var(--blossom);line-height:1}
+  .steps h3{font-family:var(--display);font-size:1.3rem;margin-top:.5rem}
+  .steps p{color:var(--muted);margin-top:.4rem}
+  .callout{margin-top:3.5rem;background:var(--blossom);color:var(--river-deep);border-radius:20px;padding:2.25rem 2.5rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+  .callout p{font-family:var(--display);font-size:1.4rem;font-weight:700;max-width:34ch;line-height:1.25}
+  .callout .btn{background:var(--river-deep);color:var(--paper)}
+
+  /* Team */
+  #ekip{background:#fff;border-bottom:1px solid var(--line)}
+  .team-grid{margin-top:3rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2.5rem}
+  .team-card{display:flex;flex-direction:column}
+  .team-photo{width:100%;aspect-ratio:1/1;border-radius:50%;overflow:hidden;border:4px solid var(--sage);background:var(--river);display:flex;align-items:center;justify-content:center}
+  .team-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .team-info{margin-top:1.25rem;text-align:center}
+  .team-info h3{font-family:var(--display);font-size:1.2rem;font-weight:700;color:var(--ink)}
+  .team-info .role{font-weight:600;font-size:.9rem;color:var(--blossom);filter:brightness(.85);margin-top:.2rem}
+  .team-info p{color:var(--muted);font-size:.95rem;margin-top:.6rem;text-align:left}
+
+  /* Partners */
+  #ortaklar{background:var(--paper)}
+  .partners-grid{margin-top:3rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2rem;align-items:center}
+  .partner-card{display:flex;flex-direction:column;align-items:center;gap:.75rem;padding:1.5rem;background:#fff;border-radius:16px;border:1px solid var(--line);text-align:center}
+  .partner-card img{max-height:60px;width:auto;max-width:140px;object-fit:contain}
+  .partner-card span{font-size:.85rem;font-weight:600;color:var(--muted)}
+
+  /* Contact */
+  #iletisim{background:var(--river-deep);color:var(--paper)}
+  #iletisim h2{color:var(--paper)}
+  #iletisim .lead{color:#BFD3CE}
+  .contact-list{margin-top:2rem;list-style:none;display:grid;gap:1rem}
+  .contact-list dt{font-size:.9rem;color:var(--sage)}
+  .contact-list a{text-decoration-color:var(--blossom);text-underline-offset:4px}
+  form{display:grid;gap:1rem}
+  label{font-size:.95rem;font-weight:500;display:grid;gap:.35rem}
+  input,textarea{font:inherit;padding:.8rem 1rem;border-radius:12px;border:1px solid #2E5A64;background:#0C3F4A;color:var(--paper)}
+  textarea{min-height:140px;resize:vertical}
+  form .btn{justify-self:start;cursor:pointer;font:inherit;font-weight:600}
+
+  footer{background:var(--river-deep);color:#8FAAA4;border-top:1px solid #1E4C56;padding:1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom,0px));font-size:.92rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+  @media(max-width:860px){
+    .menu-btn{display:block}
+    nav ul{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line)}
+    nav ul.open{display:flex}
+    nav li a{display:block;padding:1rem 1.25rem;border-top:1px solid var(--line)}
+    .split,.feature{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    section{padding:4.5rem 0}
+    .hero .wrap{padding-top:4rem}
+    .partners-grid{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">
+      <img src="foto/logo-adya.png" alt="ADYA logo">
+      ADYA
+    </a>
+    <div class="nav-right">
+      <nav aria-label="Ana menü">
+        <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menü</button>
+        <ul id="menu">
+          <li><a href="#hakkimizda"><span class="tr-text">Hakkımızda</span><span class="en-text">About</span></a></li>
+          <li><a href="#projeler"><span class="tr-text">Projeler</span><span class="en-text">Projects</span></a></li>
+          <li><a href="#ekip"><span class="tr-text">Ekip</span><span class="en-text">Team</span></a></li>
+          <li><a href="#ortaklar"><span class="tr-text">Ortaklar</span><span class="en-text">Partners</span></a></li>
+          <li><a href="#galeri"><span class="tr-text">Galeri</span><span class="en-text">Gallery</span></a></li>
+          <li><a href="#firsatlar"><span class="tr-text">Fırsatlar</span><span class="en-text">Opportunities</span></a></li>
+          <li><a href="#iletisim"><span class="tr-text">İletişim</span><span class="en-text">Contact</span></a></li>
+        </ul>
+      </nav>
+      <button class="lang-btn" id="lang-toggle">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding:0">
+    <div class="wrap">
+      <h1>
+        <span class="tr-text">Adana'dan Avrupa'ya köprü kuruyoruz.</span>
+        <span class="en-text">Building bridges from Adana to Europe.</span>
+      </h1>
+      <p>
+        <span class="tr-text">Adana Kalkınma ve Gençlik Derneği, gençleri Avrupa'nın dört bir yanındaki akranlarıyla buluşturan değişimler, eğitimler ve ortaklıklar düzenler.</span>
+        <span class="en-text">Adana Development and Youth Association connects young people with peers across Europe through exchanges, training courses, and partnerships.</span>
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#firsatlar">
+          <span class="tr-text">Başvuru fırsatlarını gör</span>
+          <span class="en-text">See open calls</span>
+        </a>
+        <a class="btn btn-ghost" href="#projeler">
+          <span class="tr-text">Projelerimiz</span>
+          <span class="en-text">Our projects</span>
+        </a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/adanayouthassociation/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <svg class="bridge" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="#F29A2E" stroke-width="5">
+        <path class="arch" d="M0 170V110a85 85 0 0 1 170 0v60"/>
+        <path class="arch" d="M170 170V100a95 95 0 0 1 190 0v70"/>
+        <path class="arch" d="M360 170V92a110 110 0 0 1 220 0v78"/>
+        <path class="arch" d="M580 170V82a120 120 0 0 1 240 0v88"/>
+        <path class="arch" d="M820 170V96a100 100 0 0 1 200 0v74"/>
+        <path class="arch" d="M1020 170V108a90 90 0 0 1 180 0v62"/>
+      </g>
+      <rect x="0" y="150" width="1200" height="20" fill="#08333D"/>
+    </svg>
+  </section>
+
+  <section id="hakkimizda">
+    <div class="wrap split">
+      <div>
+        <h2><span class="tr-text">Hakkımızda</span><span class="en-text">About Us</span></h2>
+        <p class="lead">
+          <span class="tr-text">Aralık 2025'te Adana'da kurulan genç bir derneğiz ve kısa sürede Avrupa'nın dört bir yanında projelerde yer aldık. Amacımız, her gencin — imkânı ne olursa olsun — dünyayı görme, yeni beceriler kazanma ve kendi şehrine katkı sunma şansı bulması.</span>
+          <span class="en-text">Founded in Adana in December 2025, we are a young association that has quickly become active in projects across Europe. Our goal is for every young person — regardless of their background — to have the chance to see the world, gain new skills, and contribute to their city.</span>
+        </p>
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <h3><span class="tr-text">Erasmus+ ile uluslararası çalışıyoruz</span><span class="en-text">We work internationally through Erasmus+</span></h3>
+          <p>
+            <span class="tr-text">Gençlik değişimleri, gençlik çalışanları için eğitimler ve ortaklık projeleri yürütüyor, Avrupa'daki ortaklarımızla birlikte etkinliklere ev sahipliği yapıyoruz.</span>
+            <span class="en-text">We run youth exchanges, training courses for youth workers, and partnership projects, hosting events together with our European partners.</span>
+          </p>
+        </div>
+        <div class="fact">
+          <h3><span class="tr-text">Kapsayıcılık önceliğimiz</span><span class="en-text">Inclusion is our priority</span></h3>
+          <p>
+            <span class="tr-text">Fırsatlara en zor ulaşan gençlere — kırsalda yaşayanlara, engelli ve nöro-çeşitli gençlere — öncelik veriyoruz.</span>
+            <span class="en-text">We prioritise young people who face the greatest barriers — those in rural areas, young people with disabilities and neurodiverse youth.</span>
+          </p>
+        </div>
+        <div class="fact">
+          <h3><span class="tr-text">Gönüllü bir ekibiz</span><span class="en-text">We are a volunteer team</span></h3>
+          <p>
+            <span class="tr-text">Başkanımız Yunus Emre Oğlakkaya önderliğinde, gençlik çalışmalarına gönül vermiş gönüllülerle birlikte çalışıyoruz.</span>
+            <span class="en-text">Led by our president Yunus Emre Oğlakkaya, we work with dedicated volunteers committed to youth work.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ekip">
+    <div class="wrap">
+      <h2><span class="tr-text">Ekibimiz</span><span class="en-text">Our Team</span></h2>
+      <p class="lead">
+        <span class="tr-text">Erasmus+ projelerinde ve gençlik çalışmalarında deneyimli bir ekiple çalışıyoruz.</span>
+        <span class="en-text">We work with a team experienced in Erasmus+ projects and youth work.</span>
+      </p>
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="team-photo"><img src="foto/ekip-hasan.jpg" alt="Hasan Mehmet Divaroğlu"></div>
+          <div class="team-info">
+            <h3>Hasan Mehmet Divaroğlu</h3>
+            <div class="role"><span class="tr-text">Proje Koordinatörü</span><span class="en-text">Project Coordinator</span></div>
+            <p>
+              <span class="tr-text">AB proje geliştirme ve hibe yönetimi uzmanı. KA152, KA153, KA182, KA210 ve KA220 programlarında Türkiye, Almanya, Macaristan, Letonya, İspanya, İtalya ve Polonya ortaklarıyla çalışıyor.</span>
+              <span class="en-text">Expert in EU project development and grant management. Works with partners across Turkey, Germany, Hungary, Latvia, Spain, Italy and Poland on KA152, KA153, KA182, KA210 and KA220 programmes.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo"><img src="foto/ekip-ceylin.jpg" alt="Ceylin"></div>
+          <div class="team-info">
+            <h3>Ceylin</h3>
+            <div class="role"><span class="tr-text">İletişim ve Sosyal Medya Uzmanı</span><span class="en-text">Communications &amp; Social Media Specialist</span></div>
+            <p>
+              <span class="tr-text">Sosyal medya ve iletişim alanında yüksek lisans. İletişim stratejisi, içerik üretimi ve toplulukla etkileşimden sorumlu.</span>
+              <span class="en-text">Master's degree in social media and communications. Responsible for communication strategy, content creation and community outreach.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="24" r="14" fill="#A9C4B5"/><path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A9C4B5"/></svg>
+          </div>
+          <div class="team-info">
+            <h3>Umut</h3>
+            <div class="role"><span class="tr-text">Proje Koordinatörü ve Eğitimci</span><span class="en-text">Project Coordinator &amp; Trainer</span></div>
+            <p>
+              <span class="tr-text">Sivil toplum geliştirme ve kapasite artırma alanında uluslararası deneyime sahip. Erasmus+ KA2 projelerinde aktif rol alıyor.</span>
+              <span class="en-text">Internationally experienced in civil society development and capacity building. Actively involved in Erasmus+ KA2 projects.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="24" r="14" fill="#A9C4B5"/><path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A9C4B5"/></svg>
+          </div>
+          <div class="team-info">
+            <h3>Ramazan</h3>
+            <div class="role"><span class="tr-text">Proje Koordinatörü ve Eğitimci</span><span class="en-text">Project Coordinator &amp; Trainer</span></div>
+            <p>
+              <span class="tr-text">Sivil toplum sektöründe işbirliği ortaklıkları ve eğitim tasarımı konusunda uzman. Erasmus+ KA2 projelerinin uygulanmasında aktif.</span>
+              <span class="en-text">Specialised in cooperation partnerships and training design in the civil society sector. Active in implementing Erasmus+ KA2 projects.</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projeler">
+    <div class="wrap">
+      <h2><span class="tr-text">Projelerimiz</span><span class="en-text">Our Projects</span></h2>
+      <p class="lead">
+        <span class="tr-text">Avrupa'daki ortaklarımızla birlikte yürüttüğümüz güncel ve geçmiş çalışmalar.</span>
+        <span class="en-text">Current and past work carried out with our European partners.</span>
+      </p>
+
+      <article class="feature">
+        <div class="feature-body">
+          <span class="tag"><span class="tr-text">Yaklaşan gençlik değişimi</span><span class="en-text">Upcoming youth exchange</span></span>
+          <h3>
+            <span class="tr-text">Duyusal Köprüler: Nöro-çeşitli gençler için kapsayıcı bir değişim</span>
+            <span class="en-text">Sensory Bridges: An inclusive exchange for neurodiverse youth</span>
+          </h3>
+          <p>
+            <span class="tr-text">Altı ülkeden gençler Adana'da buluşuyor. Duyusal farklılıkları anlamak ve herkesin katılabileceği ortamlar tasarlamak için birlikte atölyeler yapacağız.</span>
+            <span class="en-text">Young people from six countries meet in Adana. We will run workshops to understand sensory differences and design inclusive environments.</span>
+          </p>
+          <p>
+            <span class="tr-text">Ortaklar: SPARK e.V. (Almanya), Change Crew (Ukrayna), Györ Development Youth Group (Macaristan), Cooliving (Fransa), Waka (İspanya). ADYA ev sahibi ortaktır.</span>
+            <span class="en-text">Partners: SPARK e.V. (Germany), Change Crew (Ukraine), Györ Development Youth Group (Hungary), Cooliving (France), Waka (Spain). ADYA is the hosting partner.</span>
+          </p>
+        </div>
+        <dl class="feature-side">
+          <div><dt><span class="tr-text">Tarih</span><span class="en-text">Date</span></dt><dd>10–19 Temmuz / July 2027</dd></div>
+          <div><dt><span class="tr-text">Yer</span><span class="en-text">Venue</span></dt><dd>Adana, Türkiye</dd></div>
+          <div><dt><span class="tr-text">Katılımcılar</span><span class="en-text">Participants</span></dt><dd><span class="tr-text">13–17 yaş, 24 genç, 6 ülke</span><span class="en-text">Ages 13–17, 24 young people, 6 countries</span></dd></div>
+        </dl>
+      </article>
+
+      <h3 class="subhead"><span class="tr-text">Yaklaşan hareketlilikler</span><span class="en-text">Upcoming mobilities</span></h3>
+      <ul class="past">
+        <li><strong>Y-BLOOM: Youth Bridges Across the Mediterranean</strong><span><span class="tr-text">Gençlik değişimi · 22–28 Ekim 2026 · Sousse, Tunus</span><span class="en-text">Youth exchange · 22–28 Oct 2026 · Sousse, Tunisia</span></span></li>
+        <li><strong>Guardians of Green</strong><span><span class="tr-text">Eğitim kursu · 2026 · Store Heddinge, Danimarka</span><span class="en-text">Training course · 2026 · Store Heddinge, Denmark</span></span></li>
+        <li><strong>Living with AI: Shaping Our Future</strong><span><span class="tr-text">Gençlik değişimi · 16–25 Kasım 2026 · Dahndorf, Almanya</span><span class="en-text">Youth exchange · 16–25 Nov 2026 · Dahndorf, Germany</span></span></li>
+      </ul>
+
+      <h3 class="subhead"><span class="tr-text">Tamamlanan projeler</span><span class="en-text">Completed projects</span></h3>
+      <div class="cards">
+        <article class="card">
+          <div class="photo"><img src="foto/proje1.jpg" alt="Proje yazma eğitimi" loading="lazy" onerror="this.remove()"></div>
+          <h3><span class="tr-text">AB Hibe Fonlarına Yönelik Proje Yazma Eğitimi</span><span class="en-text">Project Writing Training for EU Grant Funds</span></h3>
+          <div class="meta"><span class="tr-text">5 günlük eğitim · Ağustos 2026 · Gaziantep</span><span class="en-text">5-day training · August 2026 · Gaziantep</span></div>
+          <p><span class="tr-text">Gaziantep Büyükşehir Belediyesi Gençlik Merkezi'nde proje hazırlama ve geliştirme süreçleri üzerine çalıştık.</span><span class="en-text">We worked on project preparation and development at the Gaziantep Metropolitan Municipality Youth Centre.</span></p>
+          <a class="more" href="https://www.instagram.com/reel/DcVfuM7oEL1/" target="_blank" rel="noopener"><span class="tr-text">Videoyu izle</span><span class="en-text">Watch video</span></a>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="foto/proje2.jpg" alt="NFE Lab Letonya" loading="lazy" onerror="this.remove()"></div>
+          <h3>The NFE Lab: Designing the Future of Youth Participation</h3>
+          <div class="meta"><span class="tr-text">Eğitim kursu · Ağustos 2026 · Balvi, Letonya</span><span class="en-text">Training course · August 2026 · Balvi, Latvia</span></div>
+          <p><span class="tr-text">Yaygın eğitim ve gençlerin katılımı üzerine yedi ülkeden katılımcılarla bir araya geldik.</span><span class="en-text">We met participants from seven countries at this training course on non-formal education and youth participation.</span></p>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="foto/proje3.jpg" alt="Words Hurt kampanyası" loading="lazy" onerror="this.remove()" style="object-position:top"></div>
+          <h3>WORD UP: Words Hurt, Actions Matter</h3>
+          <div class="meta"><span class="tr-text">Sosyal medya kampanyası · Haziran 2026 · Polonya</span><span class="en-text">Social media campaign · June 2026 · Poland</span></div>
+          <p><span class="tr-text">Mind Balance Fundacja ile zararlı dil ve çevrim içi nefrete dikkat çeken bir kampanya yürüttük.</span><span class="en-text">Together with Mind Balance Fundacja, we ran a campaign raising awareness of harmful language and online hate.</span></p>
+          <a class="more" href="https://www.instagram.com/p/DZYJXvIjDIE/" target="_blank" rel="noopener"><span class="tr-text">Kampanyayı gör</span><span class="en-text">See campaign</span></a>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="foto/proje4.jpg" alt="Strasbourg Avrupa Parlamentosu" loading="lazy" onerror="this.remove()"></div>
+          <h3>Future Technology of Youth Workers</h3>
+          <div class="meta"><span class="tr-text">Gençlik çalışanları hareketliliği · Mart 2026 · Strasbourg</span><span class="en-text">Youth workers mobility · March 2026 · Strasbourg</span></div>
+          <p><span class="tr-text">Strasbourg'da farklı ülkelerden gençlik çalışanlarıyla buluştuk ve Avrupa Parlamentosu'nu ziyaret ettik.</span><span class="en-text">We met youth workers from different countries in Strasbourg and visited the European Parliament.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeri">
+    <div class="wrap">
+      <h2><span class="tr-text">Galeri</span><span class="en-text">Gallery</span></h2>
+      <p class="lead">
+        <span class="tr-text">Değişimlerden, eğitimlerden ve Adana'daki buluşmalarımızdan kareler.</span>
+        <span class="en-text">Moments from our exchanges, training courses and gatherings in Adana.</span>
+      </p>
+      <div class="gallery">
+        <div class="photo wide tall"><img src="foto/galeri1.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo"><img src="foto/galeri2.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo"><img src="foto/galeri3.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo wide"><img src="foto/galeri4.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo"><img src="foto/galeri5.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo tall"><img src="foto/galeri6.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo"><img src="foto/galeri7.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+        <div class="photo"><img src="foto/galeri8.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ortaklar">
+    <div class="wrap">
+      <h2><span class="tr-text">Ortaklarımız</span><span class="en-text">Our Partners</span></h2>
+      <p class="lead">
+        <span class="tr-text">Avrupa genelinde birlikte proje yürüttüğümüz kuruluşlar ve destek veren programlar.</span>
+        <span class="en-text">Organisations we run projects with across Europe and the programmes that support our work.</span>
+      </p>
+      <div class="partners-grid">
+        <div class="partner-card"><img src="foto/logo-erasmus.png" alt="Erasmus+"><span>Erasmus+</span></div>
+        <div class="partner-card"><img src="foto/logo-ua.png" alt="Türkiye Ulusal Ajansı"><span><span class="tr-text">Türkiye Ulusal Ajansı</span><span class="en-text">Turkish National Agency</span></span></div>
+        <div class="partner-card"><img src="foto/logo-gyor.png" alt="GYÖR International Youth Academy"><span>GYÖR International Youth Academy</span></div>
+        <div class="partner-card"><img src="foto/logo-athena.jpg" alt="ATHENA"><span>ATHENA</span></div>
+        <div class="partner-card"><img src="foto/logo-ikigai.png" alt="Instituto iKigai"><span>Instituto iKigai</span></div>
+        <div class="partner-card"><img src="foto/logo-milano.png" alt="Milano International Youth Group"><span>Milano International Youth Group</span></div>
+        <div class="partner-card"><img src="foto/logo-eu.jpg" alt="EU Funded"><span><span class="tr-text">AB tarafından finanse edilmektedir</span><span class="en-text">Funded by the European Union</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="firsatlar">
+    <div class="wrap">
+      <h2><span class="tr-text">Gençlere fırsatlar</span><span class="en-text">Opportunities for Youth</span></h2>
+      <p class="lead">
+        <span class="tr-text">Yurt dışındaki gençlik değişimlerine ve eğitimlere katılmak ücretsizdir; yol, konaklama ve yemek masrafları Erasmus+ programı tarafından karşılanır.</span>
+        <span class="en-text">Participation in youth exchanges and training courses abroad is free; travel, accommodation and food are covered by Erasmus+.</span>
+      </p>
+      <ol class="steps">
+        <li>
+          <h3><span class="tr-text">Duyuruları takip et</span><span class="en-text">Follow our announcements</span></h3>
+          <p><span class="tr-text">Açık çağrıları bu sayfada ve <a href="https://www.instagram.com/adanayouthassociation/" target="_blank" rel="noopener">Instagram</a>'da paylaşıyoruz.</span><span class="en-text">We share open calls on this page and on <a href="https://www.instagram.com/adanayouthassociation/" target="_blank" rel="noopener">Instagram</a>.</span></p>
+        </li>
+        <li>
+          <h3><span class="tr-text">Başvuru formunu doldur</span><span class="en-text">Fill in the application form</span></h3>
+          <p><span class="tr-text">Kendini ve neden katılmak istediğini anlatan kısa bir form yeterli.</span><span class="en-text">A short form describing yourself and why you want to participate is all that's needed.</span></p>
+        </li>
+        <li>
+          <h3><span class="tr-text">Hazırlık toplantısına katıl</span><span class="en-text">Join the preparation meeting</span></h3>
+          <p><span class="tr-text">Seçilen katılımcılarla yolculuktan önce her şeyi birlikte planlıyoruz.</span><span class="en-text">We meet with selected participants before the trip to plan everything together.</span></p>
+        </li>
+      </ol>
+      <div class="callout">
+        <p><span class="tr-text">Yeni çağrılardan ilk sen haberdar olmak ister misin?</span><span class="en-text">Want to be the first to hear about new open calls?</span></p>
+        <a class="btn" href="#iletisim"><span class="tr-text">Bize yaz</span><span class="en-text">Write to us</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="iletisim">
+    <div class="wrap split">
+      <div>
+        <h2><span class="tr-text">İletişim</span><span class="en-text">Contact</span></h2>
+        <p class="lead">
+          <span class="tr-text">Ortaklık teklifleri, katılım soruları ya da gönüllü olmak için bize ulaşın.</span>
+          <span class="en-text">Get in touch for partnership proposals, participation questions or volunteering.</span>
+        </p>
+        <dl class="contact-list">
+          <div><dt><span class="tr-text">Telefon</span><span class="en-text">Phone</span></dt><dd><a href="tel:+905061580840">0506 158 08 40</a></dd></div>
+          <div><dt><span class="tr-text">Adres</span><span class="en-text">Address</span></dt><dd>Cemalpaşa Mah. Gazipaşa Bulvarı No:20<br>Karadayı Apt. D:6, Seyhan / Adana</dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/adanayouthassociation/" target="_blank" rel="noopener">@adanayouthassociation</a></dd></div>
+          <div><dt>Erasmus+ OID</dt><dd>E10369034</dd></div>
+        </dl>
+      </div>
+      <form name="iletisim" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="iletisim">
+        <label><span class="tr-text">Adınız</span><span class="en-text">Your name</span><input type="text" name="ad" required autocomplete="name"></label>
+        <label><span class="tr-text">E-posta adresiniz</span><span class="en-text">Your email</span><input type="email" name="eposta" required autocomplete="email"></label>
+        <label><span class="tr-text">Mesajınız</span><span class="en-text">Your message</span><textarea name="mesaj" required></textarea></label>
+        <button class="btn btn-primary" type="submit"><span class="tr-text">Mesajı gönder</span><span class="en-text">Send message</span></button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Adana Kalkınma ve Gençlik Derneği · <span class="tr-text">Dernek kütük no:</span><span class="en-text">Reg. no:</span> 01-040-104</span>
+    <span><span class="tr-text">Projelerimiz Erasmus+ programı tarafından desteklenmektedir.</span><span class="en-text">Our projects are supported by the Erasmus+ programme.</span></span>
+  </div>
+</footer>
+
+<script>
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+  const langBtn = document.getElementById('lang-toggle');
+  langBtn.addEventListener('click', () => {
+    const isEn = document.body.classList.toggle('en');
+    langBtn.textContent = isEn ? 'TR' : 'EN';
+    document.documentElement.lang = isEn ? 'en' : 'tr';
+  });
+</script>
+</body>
+</html>
